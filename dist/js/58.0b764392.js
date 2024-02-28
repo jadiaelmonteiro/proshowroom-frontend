@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkpro_showroom"]=self["webpackChunkpro_showroom"]||[]).push([[58,81],{7410:(s,o,r)=>{r.d(o,{A:()=>p});r(158);var e=r(6960);const p=(0,e.Gn)("spacer","div","v-spacer")}}]);
+//# sourceMappingURL=58.0b764392.js.map
