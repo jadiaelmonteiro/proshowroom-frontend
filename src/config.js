@@ -1,3 +1,3 @@
 module.exports = {
-    urlBase: "http://127.0.0.1:8080/back-end/"
+    urlBase: "https://proshow-api.azurewebsites.net/"
 }

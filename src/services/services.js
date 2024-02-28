@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000/';
+const baseUrl = 'https://proshow-api.azurewebsites.net/';
 
 export const http = {
     get: async (endpoint, params) => {
