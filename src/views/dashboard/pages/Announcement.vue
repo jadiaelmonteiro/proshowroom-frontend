@@ -123,17 +123,15 @@ export default {
         createAnnoucement() {
             announcementService.create({
                 jwt: this.jwt,
-                body: this.dataForm
+                body: this.dataForm,
+                file: this.dataForm.img
             }).then(
                 response => {
                     this.textContentSnack = "ANÚNCIO PUBLICADO!";
                     this.colorSnack = "success";
                     this.snackbar = true;
-                    if (this.dataForm.img != null && this.dataForm.img.name) {
-                        this.updateFilePath(response.id);
-                    } else {
-                        this.clearDataForm();
-                    }
+                    this.clearDataForm();
+                    console.log(response);
                 }
             ).catch(error => {
                 this.textContentSnack = "FALHA AO CRIAR ANÚNCIO!";
@@ -143,20 +141,6 @@ export default {
             });
         },
 
-        updateFilePath(id) {
-            if (this.dataForm.img) {
-                announcementService.updateFile({
-                    jwt: this.jwt,
-                    id: id,
-                    file: this.dataForm.img,
-                }).then(response => {
-                    console.log(response);
-                    this.clearDataForm();
-                }).catch(error => {
-                    console.log(error);
-                });
-            }
-        },
         clearDataForm() {
             this.dataForm.title = "";
             this.dataForm.description = "";

@@ -31,7 +31,7 @@
                         <v-col v-for="announcement in filteredAnnouncements" :key="announcement.id" lg="3">
                             <v-card class="mx-auto" max-width="300">
                                 <v-carousel height="200" cycle>
-                                    <v-carousel-item v-if="announcement.filePath" :src="url + announcement.filePath" cover>
+                                    <v-carousel-item v-if="announcement.filePath" :src="announcement.filePath" cover>
                                     </v-carousel-item>
                                     <v-carousel-item v-else src="../../../assets/advertisements/img-6.jpg" cover>
                                     </v-carousel-item>
@@ -127,7 +127,6 @@
   
 <script>
 import announcementService from '../../../services/announcementService';
-const config = require('../../../config.js');
 export default {
     name: 'LadingPage',
     components: {
@@ -141,7 +140,6 @@ export default {
         filteredAnnouncements: [],
         dialog: false,
         publisher: [],
-        url: config.urlBase
     }),
     watch: {
     },
