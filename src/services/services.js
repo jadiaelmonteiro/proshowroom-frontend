@@ -156,7 +156,7 @@ export const http = {
             try {
                 const form = new FormData();
                 form.append('title', body.body.title);
-                form.append('description', body.description);
+                form.append('description', body.body.description);
                 form.append('File', body.file);
                 form.append('value', body.body.value);
                 form.append('categorie', body.body.categorie);
