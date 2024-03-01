@@ -2,7 +2,7 @@ import { http } from './services';
 
 const announcementService = {
     create: (data) => {
-        return http.post('announcement', data);
+        return http.postAnnouncement('announcement', data);
     },
 
     updateFile: (data) => {

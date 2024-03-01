@@ -7,10 +7,11 @@
       <v-col cols="12" md="4">
         <base-material-card color="showroom" class="v-card-profile">
           <div v-if="this.dataUser.filePath" class="avatar text-center">
-            <img id="imgFileUser" class="img" width="150" :src="url + this.dataUser.filePath" />
+            <img id="imgFileUser" class="img" width="150" :src="this.dataUser.filePath" />
           </div>
           <div v-else class="avatar text-center">
-            <img id="imgFileUser" class="img" width="150" :src="url + '/uploads/empty-photo.jpg'" />
+            <img id="imgFileUser" class="img" width="150"
+              src="https://firebasestorage.googleapis.com/v0/b/proshowroom-195dc.appspot.com/o/empty-photo.jpg?alt=media&token=afc8b20b-3a10-4ef6-8106-6e62a5834bcd" />
           </div>
           <v-card-text class="text-center">
             <h6 class="display-1 mb-1 font-weight-light">
@@ -123,7 +124,6 @@
 
 <script>
 import userService from '../../../services/userService';
-const config = require('../../../config.js');
 export default {
   data: () => ({
     showPassword: false,
@@ -158,13 +158,13 @@ export default {
     textContentSnack: "",
     colorSnack: "success",
     snackbar: false,
-    url: config.urlBase,
   }),
   methods: {
     async getDataUser() {
       await userService.getUserById({
         id: localStorage.getItem('userId'),
-        jwt: localStorage.getItem('jwt')
+        jwt: localStorage.getItem('jwt'),
+        file: this.dataInputForm.file
       }).then(res => {
         this.dataUser = res;
       }).catch(error => {
@@ -214,26 +214,7 @@ export default {
           this.snackbar = true;
           this.dataInputForm.file = [];
         }
-        this.uploadFile();
       };
-    },
-
-    uploadFile() {
-      userService.updateFile({
-        id: this.dataInputForm.id,
-        jwt: localStorage.getItem('jwt'),
-        file: this.dataInputForm.file
-      }).then(response => {
-        console.log(response);
-        this.textContentSnack = "DADOS ATUALIZADOS COM SUCESSO!";
-        this.colorSnack = "success";
-        this.snackbar = true;
-        this.getDataUser().then(() => {
-          this.fillDataForm();
-        })
-      }).catch(error => {
-        console.log(error);
-      })
     },
 
     async getViaCepData() {

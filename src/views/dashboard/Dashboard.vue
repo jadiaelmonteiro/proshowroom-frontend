@@ -23,8 +23,7 @@
             </v-col>
 
             <v-col cols="12" sm="6">
-              <base-material-stats-card color="primary" icon="mdi mdi-currency-brl"
-                title="Somatório dos valores dos anúncios"
+              <base-material-stats-card color="primary" icon="mdi mdi-currency-brl" title="Somatório - valores"
                 :value="formatNumberForReal(dashboardData.totalAnnouncementsValue ?? '0')" sub-icon="mdi-clock"
                 sub-text="Última publicação" />
             </v-col>
@@ -49,7 +48,7 @@
               <v-col v-for="announcement in announcements" :key="announcement.id" lg="3">
                 <v-card class="mx-auto" max-width="300">
                   <v-carousel height="200" cycle>
-                    <v-carousel-item v-if="announcement.filePath" :src="url + announcement.filePath" cover>
+                    <v-carousel-item v-if="announcement.filePath" :src="announcement.filePath" cover>
                     </v-carousel-item>
                     <v-carousel-item v-else src="../../assets/advertisements/img-6.jpg" contain>
                     </v-carousel-item>
@@ -93,7 +92,6 @@
 
 <script>
 import announcementService from '../../services/announcementService';
-const config = require('../../config.js');
 export default {
   name: 'DashboardDashboard',
 
@@ -106,7 +104,6 @@ export default {
       textContentSnack: "",
       colorSnack: "success",
       snackbar: false,
-      url: config.urlBase,
     }
   },
 

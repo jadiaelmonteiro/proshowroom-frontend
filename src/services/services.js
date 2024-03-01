@@ -113,25 +113,33 @@ export const http = {
         })
     },
 
-    updatedFile: async (endpoint, params) => {
-
+    updatedById: async (endpoint, params) => {
         return new Promise(async (resolve, reject) => {
             try {
                 const form = new FormData();
-                form.append('file', params.file);
-                form.append('id', params.id);
+                form.append('id', params.body.id);
+                form.append('File', params.file);
+                form.append('firstName', params.body.firstName);
+                form.append('email', params.body.email);
+                form.append('address', params.body.address);
+                form.append('city', params.body.city);
+                form.append('code', params.body.code);
+                form.append('lastName', params.body.lastName);
+                form.append('state', params.body.state);
+                form.append('phone', params.body.phone);
+                form.append('passwordNew', params.body.passwordNew);
+                form.append('passwordOld', params.body.passwordOld);
+                form.append('changePassword', params.body.changePassword);
+
 
                 const response = await fetch(`${baseUrl}${endpoint}`, {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
-                        'Authorization': `Bearer ${params.jwt}`,
+                        'Authorization': `Bearer ${params.jwt}`
                     },
                     body: form
-
                 });
-
                 const data = await response.json();
-
                 if (!response.ok) {
                     reject(`Error in request: ${response.status} - ${response.statusText}`);
                 } else {
@@ -140,6 +148,37 @@ export const http = {
             } catch (error) {
                 reject(new Error(error.message));
             }
-        });
+        })
+    },
+
+    postAnnouncement: async (endpoint, body) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const form = new FormData();
+                form.append('title', body.body.title);
+                form.append('description', body.description);
+                form.append('File', body.file);
+                form.append('value', body.body.value);
+                form.append('categorie', body.body.categorie);
+                form.append('state', body.body.state);
+                form.append('userId', body.body.userId);
+
+                const response = await fetch(`${baseUrl}${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${body.jwt}`
+                    },
+                    body: form,
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    reject(`Error in request: ${response.status} - ${response.statusText}`);
+                } else {
+                    resolve(data);
+                }
+            } catch (error) {
+                reject(new Error(error));
+            }
+        })
     },
 };
