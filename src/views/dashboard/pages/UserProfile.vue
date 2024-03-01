@@ -11,7 +11,7 @@
           </div>
           <div v-else class="avatar text-center">
             <img id="imgFileUser" class="img" width="150"
-              src="https://firebasestorage.googleapis.com/v0/b/proshowroom-195dc.appspot.com/o/empty-photo.jpg?alt=media&token=afc8b20b-3a10-4ef6-8106-6e62a5834bcd" />
+              src="https://firebasestorage.googleapis.com/v0/b/proshowroom-195dc.appspot.com/o/empty-photo.jpg?alt=media&token=a753f5f3-acc1-439b-bb44-d00dc94e93ec" />
           </div>
           <v-card-text class="text-center">
             <h6 class="display-1 mb-1 font-weight-light">
