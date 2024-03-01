@@ -188,7 +188,8 @@ export default {
       this.checkFileImg();
       userService.updatedUserById({
         jwt: localStorage.getItem('jwt'),
-        body: this.dataInputForm
+        body: this.dataInputForm,
+        file: this.dataInputForm.file
       }).then(response => {
         if (response) {
           this.textContentSnack = "DADOS ATUALIZADOS COM SUCESSO!";
